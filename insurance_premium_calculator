@@ -1,64 +1,15 @@
 
-
 ##TECHSOPHY CODING TEST
 
 **A smart calculator that gives fair, AI-based insurance prices based on who the person is and what's happening in the market.**
 
-**Goal:** Calculate insurance premium based on:
-1. User inputs (age, health status, driving history, location)
-
-2. Risk model (using ML)
-
-3. Market trends (simplified random simulation)
-
-4. Final pricing with explanation
-
 ## Step 1: Importing Libraries
-
-We import:
-- `random` to simulate market conditions,
-- `numpy` to handle numerical data,
-- `LinearRegression` from scikit-learn to build our AI model.
-
-
-## Step 2: Building the AI Model
-
-We define a class `SmartPremiumEstimator`. Inside it:
-- We train a simple **Linear Regression** model using example data.
-- The inputs are `age` and `number of accidents(claims)`.
-- The output is a `risk score` from 0.0 (safe) to 1.0 (risky).
-
-
-
-##  Step 3: Risk Score and Market Simulation
-
-- `_predict_risk_factor`: Uses the trained model to predict risk.
-- `_market_variation`: Simulates real-world market changes using a random number between 0.9 and 1.1.
-
-
-
-##  Step 4: Calculating the Final Premium
-
-We use the formula:
-
-Final Premium = Base Price × (1 + Risk Score) × Market Factor
-
-
-
-- Then we round the result and return both the premium and an explanation for the user.
-
-
-##  Step 5: Taking Input and Displaying the Result
-
-- We collect the user's age and accident history.
-- If the input is valid, we calculate the premium using our model.
-- We then display a clear explanation of the premium calculation.
-"""
-
 import random
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
+
+## Step 2: Building the AI Mode
 class SmartPremiumEstimator:
     """
     Estimates an insurance premium based on user information
@@ -87,10 +38,10 @@ class SmartPremiumEstimator:
         reg = LinearRegression()
         reg.fit(features, risk_labels)
         return reg
-
+##  Step 3: Risk Score and Market Simulation
     def _predict_risk_factor(self, client_age, claim_count):
         """
-        Uses trained model to return a bounded risk factor.
+        Uses trained model to return a  risk factor.
         """
         user_data = np.array([[client_age, claim_count]])
         estimated_risk = self.model.predict(user_data)[0]
@@ -102,6 +53,8 @@ class SmartPremiumEstimator:
         """
         return random.uniform(0.92, 1.08)  # narrower range for realism
 
+
+##  Step 4: Calculating the Final Premium
     def estimate_final_premium(self, client_age, claim_count):
         """
         Computes insurance cost using:
@@ -122,7 +75,11 @@ class SmartPremiumEstimator:
         )
         return cost, summary
 
-# Main logic
+
+
+
+##  Step 5: Taking Input and Displaying the Result
+# Main Logic
 calculator = SmartPremiumEstimator()
 print("Welcome to the AI-Driven Insurance Estimator")
 
